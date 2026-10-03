@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unthread — Offline Thread Puzzle Game for Android</title>
+<meta name="description" content="Unthread is a free offline puzzle game for Android. Tap an arrow and pull each thread free along its own route. 150 hand-built picture puzzles, every one guaranteed solvable.">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/icon.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Unthread — Pull every thread free">
+<meta property="og:description" content="150 hand-built picture puzzles. Tap an arrow, pull the thread free. Plays offline.">
+<meta property="og:image" content="assets/feature.jpg">
+<meta name="theme-color" content="#1A73E8">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MobileApplication",
+  "name": "Unthread",
+  "operatingSystem": "Android",
+  "applicationCategory": "GameApplication",
+  "genre": "Puzzle",
+  "description": "Unthread is a free offline puzzle game for Android. Every board is a picture drawn from tangled threads; tap an arrow and the whole thread slides out along its own route, but only if the lane ahead of it is clear.",
+  "url": "https://play.google.com/store/apps/details?id=com.lumenforge.unthread.pathpuzzle",
+  "downloadUrl": "https://play.google.com/store/apps/details?id=com.lumenforge.unthread.pathpuzzle",
+  "image": "assets/icon.png",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "author": { "@type": "Organization", "name": "Edswitc tech", "email": "ahmadcowork6@gmail.com" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"How do you play Unthread?","acceptedAnswer":{"@type":"Answer","text":"Tap a thread's arrow to pull that thread off the board. A thread can only leave if the straight lane in front of its arrow is empty all the way to the edge. Tapping a blocked thread costs one of your three lives."}},
+    {"@type":"Question","name":"How many levels does Unthread have?","acceptedAnswer":{"@type":"Answer","text":"150 levels. Level 1 is a short tutorial; the last boards hold more than a hundred interlocking threads."}},
+    {"@type":"Question","name":"Is every Unthread level solvable?","acceptedAnswer":{"@type":"Answer","text":"Yes. Every board is constructed in reverse and checked by a solver before release, so a solution always exists."}},
+    {"@type":"Question","name":"Does Unthread work offline?","acceptedAnswer":{"@type":"Answer","text":"Yes. No account, no sign-in and no connection are needed to play. Progress is stored on your device."}},
+    {"@type":"Question","name":"Is Unthread free?","acceptedAnswer":{"@type":"Answer","text":"Yes. Unthread is free to download and play and is supported by ads. There are no in-app purchases."}}
+  ]
+}
+</script>
+<style>
+:root{
+  --bg:#ffffff; --surface:#f3f6fa; --ink:#14171c; --muted:#5d6775; --line:#e6ebf1;
+  --accent:#1a73e8; --accent-ink:#ffffff; --accent-soft:#e7f0fe;
+}
+@media (prefers-color-scheme: dark){
+  :root{ --bg:#0e1116; --surface:#161c24; --ink:#eef2f7; --muted:#9aa4b2; --line:#242c36;
+         --accent:#5aa0ff; --accent-ink:#0a0e14; --accent-soft:#16263d; }
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:var(--accent)}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+header.top{display:flex;align-items:center;justify-content:space-between;padding:18px 0}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink);font-weight:800;font-size:20px}
+.brand img{width:40px;height:40px;border-radius:10px}
+.btn{display:inline-flex;align-items:center;gap:10px;background:var(--accent);color:var(--accent-ink);
+  text-decoration:none;font-weight:600;padding:14px 22px;border-radius:14px}
+.btn.small{padding:10px 16px;font-size:14px;border-radius:12px}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding:36px 0 56px}
+.hero h1{font-size:clamp(40px,7vw,68px);line-height:1.02;margin:0 0 14px;letter-spacing:-.02em;color:var(--accent);font-weight:900}
+.hero p.lead{font-size:19px;color:var(--muted);margin:0 0 26px;max-width:34em}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 0;padding:0;list-style:none}
+.facts li{background:var(--surface);border:1px solid var(--line);padding:6px 12px;border-radius:999px;font-size:14px;color:var(--muted)}
+.hero .phone{justify-self:center;width:min(300px,80vw);border-radius:28px;overflow:hidden;
+  border:1px solid var(--line);box-shadow:0 24px 60px -24px rgba(20,40,80,.35)}
+.hero .phone img{display:block;width:100%;height:auto}
+section{padding:48px 0;border-top:1px solid var(--line)}
+h2{font-size:28px;margin:0 0 18px;letter-spacing:-.01em}
+.shots{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.shots img{width:100%;height:auto;border-radius:18px;border:1px solid var(--line);display:block}
+.steps{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;counter-reset:s}
+.step{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:20px 20px 20px 64px;position:relative}
+.step::before{counter-increment:s;content:counter(s);position:absolute;left:20px;top:20px;width:30px;height:30px;
+  border-radius:50%;background:var(--accent-soft);color:var(--accent);font-weight:800;display:grid;place-items:center;font-size:15px}
+.step h3{margin:0 0 4px;font-size:17px}
+.step p{margin:0;color:var(--muted)}
+.faq details{border-bottom:1px solid var(--line);padding:14px 0}
+.faq summary{cursor:pointer;font-weight:600;font-size:17px;list-style:none}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";float:right;color:var(--muted);font-weight:400}
+.faq details[open] summary::after{content:"–"}
+.faq p{margin:8px 0 0;color:var(--muted)}
+footer{border-top:1px solid var(--line);padding:28px 0 40px;color:var(--muted);font-size:14px}
+footer .row{display:flex;flex-wrap:wrap;gap:8px 22px;justify-content:space-between}
+footer a{color:var(--muted)}
+@media (max-width:760px){
+  .hero{grid-template-columns:1fr;padding-top:16px;gap:28px}
+  .shots{grid-template-columns:repeat(2,1fr)}
+  .steps{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="./"><img src="assets/icon.png" alt="" width="40" height="40">Unthread</a>
+    <a class="btn small" href="https://play.google.com/store/apps/details?id=com.lumenforge.unthread.pathpuzzle">Google Play</a>
+  </header>
+
+  <main>
+    <div class="hero">
+      <div>
+        <h1>Pull every thread free.</h1>
+        <p class="lead">Unthread is a free offline puzzle game for Android. Every board is a picture drawn from tangled threads. Tap an arrow and the whole thread slides out along its own route — but only if the lane ahead of it is clear.</p>
+        <a class="btn" href="https://play.google.com/store/apps/details?id=com.lumenforge.unthread.pathpuzzle">Download on Google Play</a>
+        <ul class="facts">
+          <li>150 levels</li><li>Every level solvable</li><li>No timers</li><li>Plays offline</li><li>Light &amp; dark themes</li>
+        </ul>
+      </div>
+      <div class="phone"><img src="assets/shot-1.jpg" alt="Unthread gameplay: a picture made of tangled threads, each ending in an arrow" width="540" height="960"></div>
+    </div>
+
+    <section>
+      <h2>Screenshots</h2>
+      <div class="shots">
+        <img src="assets/shot-1.jpg" alt="Level 40 in the light theme" loading="lazy" width="540" height="960">
+        <img src="assets/shot-2.jpg" alt="Level 128 in the dark theme" loading="lazy" width="540" height="960">
+        <img src="assets/shot-3.jpg" alt="Level complete screen" loading="lazy" width="540" height="960">
+        <img src="assets/shot-4.jpg" alt="How to play" loading="lazy" width="540" height="960">
+      </div>
+    </section>
+
+    <section>
+      <h2>How to play</h2>
+      <div class="steps">
+        <div class="step"><h3>Every thread wants out</h3><p>Each thread ends in an arrow. Tap it and the whole thread slides forward along its own route and leaves the board.</p></div>
+        <div class="step"><h3>The way ahead must be clear</h3><p>A thread can only leave if the straight lane in front of its arrow is empty all the way to the edge.</p></div>
+        <div class="step"><h3>Blocked costs a life</h3><p>Tap a thread whose way is blocked and it bumps into the piece in front of it. You have three lives per level.</p></div>
+        <div class="step"><h3>Order is everything</h3><p>Clearing one thread frees the lanes behind it. Work from the outside in and a locked board opens up.</p></div>
+      </div>
+    </section>
+
+    <section class="faq">
+      <h2>Questions</h2>
+      <details open><summary>How do you play Unthread?</summary><p>Tap a thread's arrow to pull that thread off the board. A thread can only leave if the straight lane in front of its arrow is empty all the way to the edge. Tapping a blocked thread costs one of your three lives.</p></details>
+      <details><summary>How many levels does Unthread have?</summary><p>150 levels. Level 1 is a short tutorial; the last boards hold more than a hundred interlocking threads.</p></details>
+      <details><summary>Is every level solvable?</summary><p>Yes. Every board is constructed in reverse and checked by a solver before release, so a solution always exists.</p></details>
+      <details><summary>Does Unthread work offline?</summary><p>Yes. No account, no sign-in and no connection are needed to play. Your progress is stored on your device.</p></details>
+      <details><summary>Is Unthread free?</summary><p>Yes. It is free to download and play and is supported by ads. There are no in-app purchases.</p></details>
+    </section>
+  </main>
+
+  <footer>
+    <div class="row">
+      <span>© 2026 Edswitc tech</span>
+      <span><a href="privacy.html">Privacy policy</a> · <a href="mailto:ahmadcowork6@gmail.com">ahmadcowork6@gmail.com</a></span>
+    </div>
+  </footer>
+</div>
+</body>
+</html>
